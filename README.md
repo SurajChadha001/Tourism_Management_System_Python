@@ -45,7 +45,7 @@ STRIPE_SECRET_KEY=your_stripe_secret_key
 5. Apply Migrations & Run Server
 bash
 python manage.py migrate
-python manage.py createsuperuser  # (Optional) For admin access
+python manage.py createsuperuser  
 python manage.py runserver
 Visit: http://127.0.0.1:8000
 
@@ -56,8 +56,6 @@ Use environment variables for SECRET_KEY, STRIPE_SECRET_KEY, etc.
 
 Enable DEBUG=False in production.
 
-📸 Screenshots (Optional)
-(You can add images of the UI here later)
 
 📜 License
 This project is open-source under the MIT License.
