@@ -1,0 +1,301 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<style>
+    .container1 {
+        padding: 10px
+    }
+</style>
+<!-- <center>
+    <h1 style="font-size:25px; background-color:darkcyan;height:35px;color:white;padding:5px;margin-top:5px;font-family : 'Monotype Corsiva"
+        align="center"> Admin Panel </h1>
+
+</center> -->
+
+<!-- <div class="container" style="margin-top:10%;height:150px;width:100%">
+    <div class="row" style="height:90%">
+        <div style="height:100px;" class="col-md-4 prjdiv text-center">
+            <div class="container1" style="background-color:#7ad03a">
+                <h2 style="color:White">{{c}}</h2>
+                <a href="{% url 'view_destination' %}">
+                    <h4 style="color:white">Total Packages</h4>
+                </a>
+            </div>
+        </div>
+        <div style="height:100px;" class="col-md-4 prjdiv text-center">
+            <div class="container1" style="background-color:#2ea2cc">
+                <h2 style="color:White">{{b}}</h2>
+                <a href="{% url 'view_booking' %}">
+                    <h4 style="color:white">Total Booking</h4>
+
+                </a>
+            </div>
+        </div>
+        <div style="height:100px;" class="col-md-4 prjdiv text-center">
+            <div class="container1" style="background-color:#ffba00">
+                <h2 style="color:white">{{u}}</h2>
+                <a href="{% url 'all_user' %}">
+                    <h4 style="color:white">Total User</h4>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+</div>  -->
+
+
+
+
+<!-- Main -->
+<main class="py-6 mt-5 bg-surface-secondary">
+    <div class="container-fluid ">
+        <div class="card">
+            <div class="card-header bg-white">
+                <h1 class="text-center"> Admin Panel </h1>
+
+            </div>
+            <div class="card-body">
+                <!-- Card stats -->
+                <div class="row justify-content-center">
+                    <div class="col-md-3">
+                        <div class="card das_card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon icon-shape bg-success text-white text-xl rounded-circle">
+                                        <i class="bi bi-credit-card"></i>
+                                    </div>
+                                    <div class="total_counter ml-4">
+                                        <h1>{{c}}</h1>
+                                        <p><strong>Total Packages</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card das_card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
+                                        <i class="bi bi-clock-history"></i>
+                                    </div>
+                                    <div class="total_counter ml-4">
+                                        <h1>{{b}}</h1>
+                                        <p><strong>Total Booking</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card das_card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
+                                        <i class="bi bi-people"></i>
+                                    </div>
+                                    <div class="total_counter ml-4">
+                                        <h1>{{u}}</h1>
+                                        <p><strong>Total User</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="row g-6 mb-6 justify-content-center">
+            <div class="col-xl-3 col-sm-6 col-12 w-auto">
+                <div class="card shadow border-0 ">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col d-flex justify-content-between" ">
+                                <a href=" {% url 'view_destination' %}"><span
+                                    class="h6 font-semibold text-muted text-sm d-block mb-2">Total
+                                    Packages</span></a> -->
+
+        <!-- <span class="h3 font-bold mb-0">$750.90</span> -->
+        <!-- </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
+                                    <i class="bi bi-credit-card"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2 mb-0 text-sm">
+                            <span class="badge badge-pill bg-soft-success text-success me-2">
+                                <i class="bi bi-arrow-up me-1"></i>{{c}}
+                            </span>
+                            <span class="text-nowrap text-xs text-muted">Since last month</span>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        <!-- <div class="col-xl-3 col-sm-6 col-12 w-auto">
+                <div class="card shadow border-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <a href="{% url 'view_booking' %}"><span
+                                        class="h6 font-semibold text-muted text-sm d-block mb-2">Total
+                                        Booking</span></a> -->
+        <!-- <span class="h3 font-bold mb-0">215</span> -->
+        <!-- </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
+                                    <i class="bi bi-people"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2 mb-0 text-sm">
+                            <span class="badge badge-pill bg-soft-success text-success me-2">
+                                <i class="bi bi-arrow-up me-1"></i>{{b}}
+                            </span>
+                            <span class="text-nowrap text-xs text-muted">Since last month</span>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        <!-- <div class="col-xl-3 col-sm-6 col-12 w-auto">
+                <div class="card shadow border-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <a href="{% url 'all_user' %}"><span
+                                        class="h6 font-semibold text-muted text-sm d-block mb-2">Total User</span></a>
+
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-info text-white text-lg rounded-circle">
+                                    <i class="bi bi-clock-history"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2 mb-0 text-sm">
+                            <span class="badge badge-pill bg-soft-danger text-danger me-2">
+                                <i class="bi bi-arrow-down me-1"></i>{{u}}
+                            </span>
+                            <span class="text-nowrap text-xs text-muted">Since last month</span>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        <!-- <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card shadow border-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <span class="h6 font-semibold text-muted text-sm d-block mb-2">Work load</span>
+                                <span class="h3 font-bold mb-0">95%</span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
+                                    <i class="bi bi-minecart-loaded"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-2 mb-0 text-sm">
+                            <span class="badge badge-pill bg-soft-success text-success me-2">
+                                <i class="bi bi-arrow-up me-1"></i>10%
+                            </span>
+                            <span class="text-nowrap text-xs text-muted">Since last month</span>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+    </div>
+
+
+
+</main>
+
+
+<!-- 
+<main class="content px-3 py-4">
+    <div class="container-fluid">
+        <div class="mb-3">
+            <h3 class="fw-bold fs-4 mb-3">Admin Dashboard</h3>
+            <div class="row">
+                <div class="col-12 col-md-4 ">
+                    <div class="card border-0">
+                        <div class="card-body py-4">
+                            <h5 class="mb-2 fw-bold">
+                                Memebers Progress
+                            </h5>
+                            <p class="mb-2 fw-bold">
+                                $72,540
+                            </p>
+                            <div class="mb-0">
+                                <span class="badge text-success me-2">
+                                    +9.0%
+                                </span>
+                                <span class=" fw-bold">
+                                    Since Last Month
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 ">
+                    <div class="card  border-0">
+                        <div class="card-body py-4">
+                            <h5 class="mb-2 fw-bold">
+                                Memebers Progress
+                            </h5>
+                            <p class="mb-2 fw-bold">
+                                $72,540
+                            </p>
+                            <div class="mb-0">
+                                <span class="badge text-success me-2">
+                                    +9.0%
+                                </span>
+                                <span class="fw-bold">
+                                    Since Last Month
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 ">
+                    <div class="card border-0">
+                        <div class="card-body py-4">
+                            <h5 class="mb-2 fw-bold">
+                                Memebers Progress
+                            </h5>
+                            <p class="mb-2 fw-bold">
+                                $72,540
+                            </p>
+                            <div class="mb-0">
+                                <span class="badge text-success me-2">
+                                    +9.0%
+                                </span>
+                                <span class="fw-bold">
+                                    Since Last Month
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</main>
+{% for i in messages %}
+<script>
+    alert("{{i}}")
+</script>
+
+<!-- <script>
+    const hamBurger = document.querySelector(".toggle-btn");
+
+hamBurger.addEventListener("click", function () {
+  document.querySelector("#sidebar").classList.toggle("expand");
+});
+</script> -->
+{% endfor %}
+
+{% endblock %}

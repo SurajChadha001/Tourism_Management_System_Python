@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="site-section">
+  <div class="container mt-3">
+    <div class="card">
+      <div class="card-header bg-white">
+        <h1 class="text-center"> VIEW BOOKING </h1>
+
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered" id="myTable">
+          <thead>
+            <tr>
+              <th>S.No.</th>
+
+              <th>Full Name</th>
+
+              <th>Email Id</th>
+              <th>Destination</th>
+              <!-- <th>Gender</th> -->
+              <th>Status</th>
+              <th>Action</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for i in c %}
+            <tr>
+              <td>{{forloop.counter}}</td>
+
+              <td>{{i.Fname}} {{i.Lname}}</td>
+
+              <td>{{i.Email}}</td>
+              <td>{{i.destination}}</td>
+              <!-- <td>{{i.gender}}</td> -->
+              <td><a href="{% url 'admin_delete_booking' i.id %}" onclick="return confirm('Are you sure?')"><button
+                    class="btn btn-danger">delete</button></a></td>
+              <td>
+                <a href="{% url 'update_booking_status' i.id 'Approved' %}"><button
+                  class="btn btn-success">Sucess</button></a>
+                <a href="{% url 'update_booking_status' i.id 'Declined' %}"><button
+                  class="btn btn-danger">Decline</button></a>
+              </td>
+            </tr>
+
+            {% endfor %}
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% for i in messages %}
+<script>
+  alert("{{i}}")
+</script>
+{% endfor %}
+{% endblock %}

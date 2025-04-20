@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="p-3 pt-5">
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <!-- login page section start -->
+      <div class="col-md-6">
+        <style>
+          .mb-4 {
+            color: red;
+          }
+        </style>
+        <div class="card form_card login_form shadow-sm">
+          <div class="card-body p-5">
+            <h2>Login</h2>
+            <form action="#" class="p-3 bg-light" novalidate method="POST">
+
+
+              <form method="POST">
+                {% csrf_token %}
+                {% for fm in form %}
+                {{ fm.label_tag }} {{ fm }}<br>
+                {% if fm.field.widget.input_type == "password" %}
+                <input type="checkbox" onclick="togglePassword('{{ fm.auto_id }}')"> Show Password
+                {% endif %}
+                {{ fm.errors|striptags }}<br><br>
+                {% endfor %}
+                <input class="btn btn-primary" type="submit" value="Sign In">
+              </form>
+            </form>
+
+            <div class="sing_text">
+              <p>
+                Don't have an account?
+                <a href="{% url 'signup' %}"><input class="prime_link" type="submit" value="Sign Up "></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- login page section end -->
+
+
+      <!-- <div class="col-md-8 mb-3">
+        <style>
+          .mb-4 {
+            color: red;
+          }
+        </style>
+
+
+
+
+
+
+        <form action="#" class="p-3 bg-light" novalidate method="POST">
+
+
+          <div class="row form-group">
+
+            <div class="col-md-4 mb-1 mb-md-0">
+              <form method="POST">
+                {% csrf_token %}
+                {% for fm in form %}
+                {{ fm.label_tag }} {{ fm }}<br>
+                {% if fm.field.widget.input_type == "password" %}
+                <input type="checkbox" onclick="togglePassword('{{ fm.auto_id }}')"> Show Password
+                {% endif %}
+                {{ fm.errors|striptags }}<br><br>
+                {% endfor %}
+                <input class="btn btn-primary" type="submit" value="Sign In">
+              </form>
+            </div>
+
+          </div>
+        </form>
+
+        <div class="p-4 mb-3 bg-white">
+          <p class="mb-0 font-weight-bold">Welcome</p>
+          <p class="mb-4"> Are you New Member? Please create your account</p><br><br>
+          <a href="{% url 'signup' %}"><input class="btn btn-primary" type="submit" value="Sign Up "></a>
+
+        </div>
+      </div> -->
+
+    </div>
+  </div>
+</div>
+<script>
+  function togglePassword(fieldId) {
+    var field = document.getElementById(fieldId);
+    if (field.type === "password") {
+      field.type = "text";
+    } else {
+      field.type = "password";
+    }
+  }
+</script>
+{% for i in messages %}
+<script>
+  alert("{{i}}")
+</script>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.zoom:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.5);
+}
+</style>
+
+<center>
+    <h1 style="font-size:25px; background-color:darkcyan;height:35px;color:white;padding:5px;margin-top:5px;font-family: 'Monotype Corsiva';" align="center">
+        PAYMENT DETAIL
+    </h1> 
+</center>
+
+
+
+<!-- Add the image display logic here -->
+<div class="site-section">
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+                <a href="#" class="unit-1 text-center">
+                    <img src="{{ booking.destination.image.url }}" alt="Image" class="img-fluid" style="margin-bottom:10px;margin-top:30px;height:400px">
+                    <img src="{{ booking.destination.image3.url }}" alt="Image" class="img-fluid" style="height:350px">
+                    <div class="unit-1-text">
+                        <strong class="text-primary mb-2 d-block"></strong>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-8">
+                <div class="p-4 mb-3 bg-white">
+                    <div class="unit-1-heading">
+                        <table class="table table-bordered bordered-success">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Place</th>
+                                    <td>{{ booking.destination.place }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Country</th>
+                                    <td>{{ booking.destination.country }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Tour</th>
+                                    <td>{{ booking.destination.days }} days {{ booking.destination.nights }} nights</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Number of Person</th>
+                                    <td>{{ booking.destination.number_of_person }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Description</th>
+                                    <td>{{ booking.destination.description }}</td>
+                                </tr>
+                            <tr>
+                                <th scope="col">Payment Option</th>
+                                <td>
+                                
+                                    
+                                    <button id="checkout-button" class="btn btn-primary" >
+                        {% comment %} Pay with ₹{% endcomment %}{{ price_dollars|floatformat:2 }} Stripe  
+                      </button>
+                                    <div id="error-message" class="text-danger mt-2"></div>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <th scope="col"><img src="{{ booking.destination.image1.url }}" style="width:400px;height:200px" class="zoom"></th>
+                                    <td><img src="{{ booking.destination.image2.url }}" style="width:400px;height:200px" class="zoom"></td>
+                                </tr>
+                               
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% for i in messages %}
+<script>
+    alert("{{ i }}");
+</script>
+{% endfor %}
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  var stripe = Stripe(
+    "pk_test_51PSCf3SGQDxzJsxwMD5Vj9JHcNSiDgq8nbWLB2i7XVQQTIThY4jd6FszZH927J6V3KGNYr0Eyf9DVboW8zLCZsCx00RPWrRWvg"
+  ); // Replace with your Stripe publishable key
+
+  document
+    .getElementById("checkout-button")
+    .addEventListener("click", function () {
+
+      var price = "{{ price_dollars|floatformat:2 }}";
+      
+      fetch("/create-checkout-session/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": "{{ csrf_token }}", // Include CSRF token for security
+        },
+        body: JSON.stringify({
+          price: price,
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to create checkout session");
+          }
+          return response.json();
+        })
+        .then((session) => {
+          return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then((result) => {
+          if (result.error) {
+            alert(result.error.message);
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert(
+            "An error occurred while processing your payment. Please try again."
+          );
+        });
+    });
+</script>
+{% endblock %}

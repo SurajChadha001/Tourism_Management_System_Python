@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<style>
+  #more {
+    display: none;
+  }
+</style>
+
+<div class="site-section">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header bg-white">
+        <h1 class="text-center"> VIEW BLOG </h1>
+
+      </div>
+      <div class="card-body">
+
+        <div class="blog_grid_container mb-3 align-items-stretch" style="">
+          {% for i in data %}
+          <div class="h-entry blog_card shadow">
+            <a href="{% url 'view_blog_detail' i.id %}">
+              <div class="blog_img_cont">
+                <img src="{{i.image.url}}" alt="Image" class="img-fluid">
+              </div>
+            </a>
+            <div class="blog_card_body">
+              <a href="{% url 'view_blog_detail' i.id %}">
+                <h2 class="font-size-regular">{{i.topic}}</h2>
+
+              </a>
+              <div class="meta mb-4 d-flex align-items-center" style="color:black">
+                <span class="d-flex align-items-center">
+                  <i class="fa fa-calendar mr-2" aria-hidden="true"></i> {{i.post_date}}
+                </span>
+                <span class="d-flex align-items-center ">
+                  <i class="fa fa-tag mr-2" aria-hidden="true"></i>
+                  <a href="{% url 'view_blog_detail' i.id %}">News</a>
+                </span>
+              </div>
+              <a class="btn btn-primary" href="{% url 'view_blog_detail' i.id %}">Read more</a>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+        <span id="dots">...</span><span id="more"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% for i in messages %}
+<script>
+  alert("{{i}}")
+</script>
+{% endfor %}
+
+<script>
+  function myFunction() {
+    var dots = document.getElementById("dots");
+    var moreText = document.getElementById("more");
+    var btnText = document.getElementById("myBtn");
+
+    if (dots.style.display === "none") {
+      dots.style.display = "inline";
+      btnText.innerHTML = "Read more";
+      moreText.style.display = "none";
+    } else {
+      dots.style.display = "none";
+      btnText.innerHTML = "Read less";
+      moreText.style.display = "inline";
+    }
+  }
+</script>
+{% endblock %}
